@@ -55,7 +55,7 @@ fn parse_map_access_expr() {
                         "indexOf",
                         [
                             Expr::Identifier(Ident::new("string_names")),
-                            Expr::Value(Value::SingleQuotedString("endpoint".to_string()).into())
+                            Expr::value(Value::SingleQuotedString("endpoint".to_string()))
                         ]
                     ),
                 })],
