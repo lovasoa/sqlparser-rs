@@ -1036,6 +1036,12 @@ pub enum Expr {
     Lambda(LambdaFunction),
 }
 
+impl Expr {
+    pub fn value(value: impl Into<ValueWithSpan>) -> Self {
+        Expr::Value(value.into())
+    }
+}
+
 /// The contents inside the `[` and `]` in a subscript expression.
 #[derive(Debug, Clone, PartialEq, PartialOrd, Eq, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
