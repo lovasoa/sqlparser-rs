@@ -1037,6 +1037,7 @@ pub enum Expr {
 }
 
 impl Expr {
+    /// Creates a new [`Expr::Value`]
     pub fn value(value: impl Into<ValueWithSpan>) -> Self {
         Expr::Value(value.into())
     }
