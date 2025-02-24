@@ -64,7 +64,7 @@ use sqlparser_derive::{Visit, VisitMut};
 /// // convert back to `Value`
 /// let value: Value = value_with_span.into();
 /// ```
-#[derive(Debug, Clone, Eq, Ord)]
+#[derive(Debug, Clone, Eq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "visitor", derive(Visit, VisitMut))]
 pub struct ValueWithSpan {
@@ -80,7 +80,13 @@ impl PartialEq for ValueWithSpan {
 
 impl PartialOrd for ValueWithSpan {
     fn partial_cmp(&self, other: &Self) -> Option<core::cmp::Ordering> {
-        self.value.partial_cmp(&other.value)
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for ValueWithSpan {
+    fn cmp(&self, other: &Self) -> core::cmp::Ordering {
+        self.value.cmp(&other.value)
     }
 }
 
